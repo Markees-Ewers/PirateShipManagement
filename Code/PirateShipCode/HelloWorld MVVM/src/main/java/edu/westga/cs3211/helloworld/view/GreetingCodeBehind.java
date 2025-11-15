@@ -1,6 +1,6 @@
 package edu.westga.cs3211.helloworld.view;
 
-import edu.westga.cs3211.helloworld.viewmodel.GreetingViewModel;
+import edu.westga.cs3211.helloworld.viewmodel.LoginPage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
@@ -28,7 +28,7 @@ public class GreetingCodeBehind {
 	@FXML
     private TextArea namesTextArea;
 
-	private GreetingViewModel viewModel;
+	private LoginPage viewModel;
 
 	/**
 	 * Instantiates a new greeting code behind.
@@ -37,7 +37,7 @@ public class GreetingCodeBehind {
 	 * @precondition none
 	 */
 	public GreetingCodeBehind() {
-		this.viewModel = new GreetingViewModel();
+		this.viewModel = new LoginPage();
 	}
 
 	@FXML

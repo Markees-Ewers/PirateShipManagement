@@ -1,6 +1,6 @@
 package edu.westga.cs3211.helloworld.viewmodel;
 
-import edu.westga.cs3211.helloworld.model.Person;
+import edu.westga.cs3211.helloworld.model.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -11,7 +11,7 @@ import javafx.beans.property.StringProperty;
  * @version Fall 2025
  */
 
-public class GreetingViewModel {
+public class LoginPage {
 
 	private StringProperty greetingProperty;
 	private StringProperty nameProperty;
@@ -20,7 +20,7 @@ public class GreetingViewModel {
 	/**
 	 * Instantiates a new greeting view model.
 	 */
-	public GreetingViewModel() {
+	public LoginPage() {
 		// this will set the CodeBehind's greetingLabel to Hello, World!
 		// because
 		// this.greetingLabel.textProperty().bind(this.viewModel.greetingProperty());
@@ -73,7 +73,7 @@ public class GreetingViewModel {
 
 		String name = this.nameProperty.getValue();
 		if (!name.isEmpty()) {
-			Person person = new Person(name);
+			User person = new User(name, name, name, null, name);
 			this.greetingProperty.setValue("Hello! " + person.getName());
 
 			if (this.allNamesProperty.getValue().isEmpty()) {
