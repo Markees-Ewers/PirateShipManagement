@@ -14,9 +14,9 @@ public class StockItem {
 
 
 
-    public StockItem(String id, String name, ItemCategory category, int currentQuantity, String unit) {
+    public StockItem( String name, ItemCategory category, int currentQuantity, String unit) {
 
-        this.id = id;
+
 
         this.name = name;
 
@@ -32,7 +32,6 @@ public class StockItem {
 
     // Getters and Setters
 
-    public String getId() { return id; }
 
     public String getName() { return name; }
 
