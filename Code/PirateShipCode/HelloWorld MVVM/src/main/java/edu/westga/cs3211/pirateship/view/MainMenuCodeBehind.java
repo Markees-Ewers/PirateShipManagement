@@ -23,6 +23,9 @@ public class MainMenuCodeBehind {
     @FXML
     public void initialize() {
         // No binding here. The ViewModel will be provided later via setViewModel(...)
+        // Ensure the Add Stock button is always wired to open the Add Stock page so
+        // navigation works even if setViewModel(...) was not called by the loader.
+        this.addStockButton.setOnAction(evt -> this.openAddStockPage());
     }
 
     // Called by whoever loads this view; accepts a pre-configured ViewModel
@@ -39,9 +42,9 @@ public class MainMenuCodeBehind {
 
     private void openAddStockPage() {
         if (this.viewModel == null) {
-            return;
+            // proceed even if viewModel is not available; performing user may not be known
         }
-        User user = this.viewModel.getPerformingUser();
+        User user = this.viewModel == null ? null : this.viewModel.getPerformingUser();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AddStock.fxml"));
             Parent root = loader.load();
