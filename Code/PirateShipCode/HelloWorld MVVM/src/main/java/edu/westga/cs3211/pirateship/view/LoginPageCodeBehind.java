@@ -3,6 +3,7 @@ package edu.westga.cs3211.pirateship.view;
 import edu.westga.cs3211pirateship.viewmodel.LoginPageViewModel;
 import edu.westga.cs3211pirateship.viewmodel.LoginResult;
 import edu.westga.cs3211pirateship.viewmodel.MainMenuViewModel;
+import edu.westga.cs3211.pirateship.model.User;
 import edu.westga.cs3211.pirateship.model.UserRole;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -86,6 +87,12 @@ public class LoginPageCodeBehind {
 			// create and configure view model for the main menu and pass it to controller
 			MainMenuViewModel menuViewModel = new MainMenuViewModel();
 			menuViewModel.configureForRole(role);
+
+			// pass performing user to the main menu viewmodel
+			User user = this.viewModel.getAuthenticatedUser();
+			if (user != null) {
+				menuViewModel.setPerformingUser(user);
+			}
 
 			MainMenuCodeBehind controller = loader.getController();
 			if (controller != null) {

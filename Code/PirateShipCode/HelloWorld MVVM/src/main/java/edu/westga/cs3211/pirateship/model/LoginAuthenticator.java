@@ -33,4 +33,12 @@ public class LoginAuthenticator {
 		return null;
 
 	}
+
+	/**
+	 * Lookup a User by username (may return null). This allows callers to obtain
+	 * the full User object after an authentication check.
+	 */
+	public User getUserByUsername(String username) {
+		return this.users.get(username);
+	}
 }

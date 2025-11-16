@@ -1,5 +1,6 @@
 package edu.westga.cs3211pirateship.viewmodel;
 
+import edu.westga.cs3211.pirateship.model.User;
 import edu.westga.cs3211.pirateship.model.UserRole;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -8,6 +9,8 @@ public class MainMenuViewModel {
 	private final BooleanProperty canAddStock = new SimpleBooleanProperty(false);
 
 	private final BooleanProperty canViewStockChanges = new SimpleBooleanProperty(false);
+
+	private User performingUser;
 
 	public void configureForRole(UserRole role) {
 		switch (role) {
@@ -24,6 +27,14 @@ public class MainMenuViewModel {
 			canViewStockChanges.set(false);
 		}
 		}
+	}
+
+	public void setPerformingUser(User user) {
+		this.performingUser = user;
+	}
+
+	public User getPerformingUser() {
+		return this.performingUser;
 	}
 
 	public BooleanProperty canAddStockProperty() {
