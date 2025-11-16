@@ -22,5 +22,4 @@
       <TextField fx:id="passwordTextField" layoutX="145.0" layoutY="137.0" promptText="Enter your password" />
          </children>
 
-
 </AnchorPane>

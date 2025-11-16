@@ -12,11 +12,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
-import javafx.util.converter.NumberStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 
+import java.util.function.UnaryOperator;
 import java.io.IOException;
 
 /**
@@ -61,8 +63,19 @@ public class AddStockCodeBehind {
     private void bindComponentsToViewModel() {
         // Bind text fields
         this.itemNameTextField.textProperty().bindBidirectional(this.viewModel.itemNameProperty());
-        // Quantity is an IntegerProperty; use a NumberStringConverter to bind to text
-        this.quantityTextField.textProperty().bindBidirectional(this.viewModel.quantityProperty(), new NumberStringConverter());
+        // Add a TextFormatter<Integer> to restrict input to digits only for quantity. Allow empty so user can edit,
+        // but prevent non-digit characters (this intercepts keystrokes before the text binding sees them).
+        UnaryOperator<TextFormatter.Change> integerFilter = change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("\\d*")) {
+                return change;
+            }
+            return null;
+        };
+        TextFormatter<Integer> formatter = new TextFormatter<>(new IntegerStringConverter(), 0, integerFilter);
+        this.quantityTextField.setTextFormatter(formatter);
+        // Bind the formatter's value (Integer) to the view model's IntegerProperty via asObject()
+        formatter.valueProperty().bindBidirectional(this.viewModel.quantityProperty().asObject());
         this.unitTextField.textProperty().bindBidirectional(this.viewModel.unitProperty());
 
         // Populate category combobox and bind selection
