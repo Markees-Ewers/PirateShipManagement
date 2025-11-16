@@ -1,4 +1,4 @@
-package edu.westga.cs3211.helloworld.model;
+package edu.westga.cs3211.pirateship.model;
 
 public class StockItem {
 

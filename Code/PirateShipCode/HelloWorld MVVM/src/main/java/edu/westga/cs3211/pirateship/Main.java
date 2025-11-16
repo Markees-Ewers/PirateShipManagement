@@ -1,7 +1,6 @@
-package edu.westga.cs3211.helloworld;
+package edu.westga.cs3211.pirateship;
 
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -10,8 +9,8 @@ import javafx.scene.layout.Pane;
 
 /**
  * Main Application class.
- * @author CS 3211
- * @version Fall 2025
+ * CS 3211
+ *  Fall 2025
  */
 public class Main extends Application {
 
