@@ -69,6 +69,31 @@ public class NavigationManager {
         primaryStage.setScene(newScene);
         return loader.getController();
     }
+    
+    /**
+     * Replace the current scene with the loader's scene without pushing the current scene onto the stack.
+     */
+    public static Object navigateReplace(FXMLLoader loader) throws IOException {
+        Parent root = loader.load();
+        Scene newScene = new Scene(root);
+        if (primaryStage == null) {
+            throw new IllegalStateException("NavigationManager not initialized with primary stage");
+        }
+        primaryStage.setScene(newScene);
+        return loader.getController();
+    }
+    
+    public static Object navigateReplace(String fxmlPath) throws IOException {
+        FXMLLoader loader = new FXMLLoader(NavigationManager.class.getResource(fxmlPath));
+        return navigateReplace(loader);
+    }
+
+    /**
+     * Returns true when there is a previous scene on the stack.
+     */
+    public static boolean canGoBack() {
+        return !SCENESTACK.isEmpty();
+    }
 
     /** Go back to the previous scene or exit if none. */
     public static void goBack() {

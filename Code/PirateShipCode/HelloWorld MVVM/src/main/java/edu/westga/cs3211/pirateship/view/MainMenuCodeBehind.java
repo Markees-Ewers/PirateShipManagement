@@ -30,6 +30,7 @@ public class MainMenuCodeBehind {
         // Ensure the Add Stock button is always wired to open the Add Stock page so
         // navigation works even if setViewModel(...) was not called by the loader.
         this.addStockButton.setOnAction(evt -> this.openAddStockPage());
+        this.viewChangesButton.setOnAction(evt -> this.openViewStockChangesPage());
     }
 
     /**
@@ -46,6 +47,8 @@ public class MainMenuCodeBehind {
 
         // wire button action to navigate to AddStock view
         this.addStockButton.setOnAction(evt -> this.openAddStockPage());
+        // wire view changes button to open the View Stock Changes page
+        this.viewChangesButton.setOnAction(evt -> this.openViewStockChangesPage());
     }
 
     @FXML
@@ -71,6 +74,15 @@ public class MainMenuCodeBehind {
             if (controller != null && user != null) {
                 controller.setPerformingUser(user);
             }
+        } catch (IOException exc) {
+            exc.printStackTrace();
+        }
+    }
+
+    private void openViewStockChangesPage() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewStockChanges.fxml"));
+            NavigationManager.navigateTo(loader);
         } catch (IOException exc) {
             exc.printStackTrace();
         }
