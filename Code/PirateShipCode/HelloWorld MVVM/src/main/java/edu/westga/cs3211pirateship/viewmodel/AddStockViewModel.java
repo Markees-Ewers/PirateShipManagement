@@ -134,8 +134,8 @@ public class AddStockViewModel {
             return true;
         }
 
-        // create new item and add to repository
-        item = new StockItem(name, cat, qty, unitVal);
+        // create new item with zero initial quantity; the StockChange will apply the qty
+        item = new StockItem(name, cat, 0, unitVal);
         repo.addItem(item);
         StockChange change = new StockChange(item, qty, performedBy, ChangeType.ADD_STOCK);
         repo.addChange(change);

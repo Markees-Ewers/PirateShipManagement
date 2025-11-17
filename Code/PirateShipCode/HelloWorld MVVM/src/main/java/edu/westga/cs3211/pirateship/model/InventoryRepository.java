@@ -21,6 +21,13 @@ public final class InventoryRepository {
     private List<StockChange> changes = new ArrayList<>();
 
     /**
+     * Instantiates a new inventory repository.
+     */
+    private InventoryRepository() {
+        // private
+    }
+
+    /**
      * Get the singleton repository instance.
      * Use this when code previously relied on static access.
      *
@@ -36,7 +43,7 @@ public final class InventoryRepository {
      * @param item the item
      */
     public  void addItem(StockItem item) {
-    	this.items.add(item);
+        this.items.add(item);
     }
 
     /**
@@ -45,7 +52,7 @@ public final class InventoryRepository {
      * @param change the change
      */
     public void addChange(StockChange change) {
-    	this.changes.add(change);
+        this.changes.add(change);
     }
 
     /**
@@ -82,5 +89,13 @@ public final class InventoryRepository {
             }
         }
         return null;
+    }
+
+    /**
+     * Clear repository contents (for testing).
+     */
+    public void clear() {
+        this.items.clear();
+        this.changes.clear();
     }
 }

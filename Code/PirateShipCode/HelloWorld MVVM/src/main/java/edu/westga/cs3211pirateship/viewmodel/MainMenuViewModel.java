@@ -23,20 +23,13 @@ public class MainMenuViewModel {
 	 * @param role the role
 	 */
 	public void configureForRole(UserRole role) {
-		switch (role) {
-		case QUARTERMASTER -> {
-			this.canAddStock.set(true);
-			this.canViewStockChanges.set(true);
-		}
-		case CREWMATE -> {
-			this.canAddStock.set(true);
-			this.canViewStockChanges.set(false);
-		}
-		default -> {
-			this.canAddStock.set(false);
-			this.canViewStockChanges.set(false);
-		}
-		}
+		if (role == UserRole.QUARTERMASTER) {
+	        this.canAddStock.set(true);
+	        this.canViewStockChanges.set(true);
+	        return;
+	    } 
+	        this.canAddStock.set(true);
+	        this.canViewStockChanges.set(false);
 	}
 
 	/**

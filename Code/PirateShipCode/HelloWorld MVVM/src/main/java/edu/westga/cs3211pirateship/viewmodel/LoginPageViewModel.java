@@ -51,24 +51,20 @@ public class LoginPageViewModel {
 	 * @return the login result
 	 */
 	public LoginResult authenticateUser() {
-	
 		String username = this.userNameProperty.get();
 		String password = this.passwordProperty.get();
 		UserRole role = this.authenticator.authenticate(username, password);
-		
 		if (role == null) {
-			this.authenticatedUser = null;
-			return LoginResult.FAILURE;
+		    this.authenticatedUser = null;
+		    return LoginResult.FAILURE;
 		}
-		 this.authenticatedUser = this.authenticator.getUserByUsername(username);
-		 switch (role) {
-         case QUARTERMASTER:
-             return LoginResult.SUCCESS_QUARTERMASTER;
-         case CREWMATE:
-             return LoginResult.SUCCESS_CREWMATE;
-         default:
-             return LoginResult.FAILURE;
-		 }
+
+		this.authenticatedUser = this.authenticator.getUserByUsername(username);
+		if (role == UserRole.QUARTERMASTER) {
+		    return LoginResult.SUCCESS_QUARTERMASTER;
+		} else {
+	        return LoginResult.SUCCESS_CREWMATE;
+	    }
 	}
 
 	/**

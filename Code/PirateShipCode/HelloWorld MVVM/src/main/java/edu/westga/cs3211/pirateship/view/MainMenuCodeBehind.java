@@ -56,7 +56,7 @@ public class MainMenuCodeBehind {
         NavigationManager.goBack();
     }
 
-    private void openAddStockPage() {
+    void openAddStockPage() {
         if (this.viewModel == null) {
          return;
         }
