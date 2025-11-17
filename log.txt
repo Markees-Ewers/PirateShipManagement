@@ -1,0 +1,101 @@
+commit bd8130450ec16b19af3ce9e3a4e00571876a0d06
+Author: Markees-Ewers <Me00070@my.westga.edu>
+Date:   Mon Nov 17 01:57:14 2025 -0500
+
+    added readme credentials
+    
+    added login credentials to the readme
+
+commit d6fb780e81cd9d32d4d2122c120eff910aa758a4
+Author: Markees-Ewers <Me00070@my.westga.edu>
+Date:   Mon Nov 17 01:47:15 2025 -0500
+
+    added testings
+    
+    fully tested units of code
+
+commit 17628a3560dd561fca870f9c8ed6161f699a6706
+Author: Markees-Ewers <Me00070@my.westga.edu>
+Date:   Sun Nov 16 21:38:11 2025 -0500
+
+    added the ViewStockPage
+    
+    added functionality to to view the stock changes and inventory
+
+commit d486c74fff3f0ded7ffda95d01980d7403047abe
+Author: Markees-Ewers <Me00070@my.westga.edu>
+Date:   Sun Nov 16 20:46:45 2025 -0500
+
+    added checkstyle fixing
+    
+    some minor improvements allong with adding checkstyle configurations and a back button :
+
+commit 1f984e5bc3e8da4bd8620696bd2bc3a9eb1b85b7
+Author: Markees-Ewers <Me00070@my.westga.edu>
+Date:   Sun Nov 16 04:06:17 2025 -0500
+
+    made it so that
+    
+    quantity in add stock doesnt preduce errors
+
+commit 2d5738e7d263e768095a238206b0cae209f6242d
+Author: Markees-Ewers <Me00070@my.westga.edu>
+Date:   Sun Nov 16 03:55:00 2025 -0500
+
+    saved files
+    
+    made sure files saved
+
+commit 1eac68b679b62d5071114bffe2e0bbeb4f1b46aa
+Author: Markees-Ewers <Me00070@my.westga.edu>
+Date:   Sun Nov 16 03:24:26 2025 -0500
+
+    added the add stock page
+    
+    a crewmate can now fully add stock, and it will check to see if existing stock of the same name exist
+
+commit 08fed71044087d72b3e7b54b8016d5718c451553
+Author: Markees-Ewers <Me00070@my.westga.edu>
+Date:   Sun Nov 16 02:23:47 2025 -0500
+
+    added multiple pages
+    
+    made it so that the main menu displays the option of pages it can go to based on the user roll of the logged in user
+
+commit b14582f86a2fb5c6b03cee4d7afb0a391181e8f7
+Author: Markees-Ewers <Me00070@my.westga.edu>
+Date:   Sun Nov 16 01:03:49 2025 -0500
+
+    added login authenrification
+    
+    added login athentification with a specific user role that can be identified by the view to set  up the page for a specific role
+
+commit 6669508cb8f52318d5580d317e50b84c35be3edd
+Author: Markees-Ewers <Me00070@my.westga.edu>
+Date:   Sat Nov 15 12:59:51 2025 -0500
+
+    changed file namew
+    
+    changed file names so that they are set for mvvm aproach
+
+commit eb74c35a86dd5f2aaf00f41fd816247ae70d2b37
+Author: Markees-Ewers <Me00070@my.westga.edu>
+Date:   Fri Nov 14 22:21:04 2025 -0500
+
+    added renaming
+    
+    made sure all files are named properly
+
+commit 777131f39335a93db33bc610e8b6d8b3fbb9ce82
+Author: Markees-Ewers <Me00070@my.westga.edu>
+Date:   Fri Nov 14 20:57:18 2025 -0500
+
+    Added starter files
+    
+    added starter files
+
+commit 2a788c01560043bb3221f575ecdb5e6761ecd741
+Author: Markees-Ewers <Me00070@my.westga.edu>
+Date:   Fri Nov 14 17:28:58 2025 -0500
+
+    Initial commit
