@@ -8,5 +8,6 @@
    <children>
       <Button fx:id="addStockButton" layoutX="66.0" layoutY="69.0" mnemonicParsing="false" text="Add Stock Page" />
       <Button fx:id="viewChangesButton" layoutX="66.0" layoutY="129.0" mnemonicParsing="false" text="View Stock Changes" />
+      <Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleBack" text="Back" />
    </children>
 </AnchorPane>

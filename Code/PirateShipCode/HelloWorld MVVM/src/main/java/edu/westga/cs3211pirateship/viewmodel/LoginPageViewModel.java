@@ -16,24 +16,40 @@ public class LoginPageViewModel {
 	private StringProperty userNameProperty;
 	private StringProperty passwordProperty;
 	private LoginAuthenticator authenticator;
-	private User authenticatedUser; // last successful user
+	private User authenticatedUser; 
 
+	/**
+	 * Instantiates a new login page view model.
+	 */
 	public LoginPageViewModel() {
 		this.userNameProperty = new SimpleStringProperty();
 		this.passwordProperty = new SimpleStringProperty();
 		this.authenticator = new LoginAuthenticator();
 	}
 
+	/**
+	 * User name property.
+	 *
+	 * @return the string property
+	 */
 	public StringProperty userNameProperty() {
 		return this.userNameProperty;
 	}
 
+	/**
+	 * Password property.
+	 *
+	 * @return the string property
+	 */
 	public StringProperty passwordProperty() {
 		return this.passwordProperty;
 	}
 
-	// 🚀 This is where the actual login check happens
-
+	/**
+	 * Authenticate user.
+	 *
+	 * @return the login result
+	 */
 	public LoginResult authenticateUser() {
 	
 		String username = this.userNameProperty.get();
@@ -46,25 +62,20 @@ public class LoginPageViewModel {
 		}
 		 this.authenticatedUser = this.authenticator.getUserByUsername(username);
 		 switch (role) {
-
          case QUARTERMASTER:
-
              return LoginResult.SUCCESS_QUARTERMASTER;
-
          case CREWMATE:
-
              return LoginResult.SUCCESS_CREWMATE;
-
          default:
-
              return LoginResult.FAILURE;
-
 		 }
 	}
 
 	/**
 	 * Returns the User object for the last successful authentication, or null
 	 * if authentication has not succeeded.
+	 *
+	 * @return the authenticated user
 	 */
 	public User getAuthenticatedUser() {
 		return this.authenticatedUser;

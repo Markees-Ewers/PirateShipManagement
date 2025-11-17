@@ -14,8 +14,6 @@
 
 
 
-
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
 	minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
 	prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1"
@@ -55,6 +53,8 @@
 
 		<Label fx:id="successLabel" layoutX="122.0" layoutY="315.0"
 			textFill="GREEN" />
+
+		<Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Back" />
 
 	</children>
 

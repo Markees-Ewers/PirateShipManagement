@@ -6,11 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import edu.westga.cs3211.pirateship.view.NavigationManager;
 
 /**
  * Main Application class.
  * CS 3211
- *  Fall 2025
+ *  @version fall 2025
+ *  @author me00070
  */
 public class Main extends Application {
 
@@ -20,7 +22,11 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Pane root = this.loadGui();
+			NavigationManager.init(primaryStage);
+			// load initial GUI using NavigationManager so the back stack is managed
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource(GUI_FXML));
+			Pane root = (Pane) loader.load();
 			Scene scene = new Scene(root);
 
 			primaryStage.setScene(scene);

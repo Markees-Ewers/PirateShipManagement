@@ -86,8 +86,29 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.3.1</version>
 			</plugin>
-			
         </plugins>
         </pluginManagement>
+        <plugins>
+            <!-- Activate Checkstyle plugin with remote configuration -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <configLocation>https://www.westga.edu/~astanesc/CS1302_data/checkstyle/UWG_checks.xml</configLocation>
+                    <consoleOutput>true</consoleOutput>
+                    <excludes>**/module-info.java</excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>validate-checkstyle</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 </project>

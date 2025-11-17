@@ -1,21 +1,25 @@
 package edu.westga.cs3211.pirateship.model;
 
+/**
+ * The ChangeType of a stock change.
+ * @author ME00070
+ * @version Fall 2025
+ */
 public enum ChangeType {
 
-    ADD_STOCK,      // New supplies added to inventory
+    ADD_STOCK,    
+    REMOVE_STOCK,   
 
-    REMOVE_STOCK,   // Stock manually removed/transferred
+    CONSUMED,      
 
-    CONSUMED,       // Used in battle or daily operations
+    SPOILED,     
 
-    SPOILED,        // Food/drink went bad
+    DAMAGED,      
 
-    DAMAGED,        // Items damaged in combat or storage
+    SOLD,           
 
-    SOLD,           // Traded or sold at port
+    THEFT,         
 
-    THEFT,          // Stolen by crew or enemies
-
-    LOST_OVERBOARD  // Lost in rough seas
+    LOST_OVERBOARD  
 
 }

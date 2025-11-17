@@ -6,36 +6,77 @@ import java.util.List;
 
 /**
  * Very small in-memory repository for demo/testing purposes.
+ * @author Markees Ewers
+ * @version Fall 2025
  */
-public class InventoryRepository {
-    private static final List<StockItem> items = new ArrayList<>();
-    private static final List<StockChange> changes = new ArrayList<>();
+public final class InventoryRepository {
+    
+    // Singleton instance for easy global access (keeps instance-style methods)
+    private static final InventoryRepository INSTANCE = new InventoryRepository();
 
-    private InventoryRepository() {
-        // static only
+    /** The Constant items. */
+    private List<StockItem> items = new ArrayList<>();
+    
+    /** The Constant changes. */
+    private List<StockChange> changes = new ArrayList<>();
+
+    /**
+     * Get the singleton repository instance.
+     * Use this when code previously relied on static access.
+     *
+     * @return single instance of InventoryRepository
+     */
+    public static InventoryRepository getInstance() {
+        return INSTANCE;
     }
 
-    public static synchronized void addItem(StockItem item) {
-        items.add(item);
+    /**
+     * Adds the item.
+     *
+     * @param item the item
+     */
+    public  void addItem(StockItem item) {
+    	this.items.add(item);
     }
 
-    public static synchronized void addChange(StockChange change) {
-        changes.add(change);
+    /**
+     * Adds the change.
+     *
+     * @param change the change
+     */
+    public void addChange(StockChange change) {
+    	this.changes.add(change);
     }
 
-    public static synchronized List<StockItem> getItems() {
-        return Collections.unmodifiableList(new ArrayList<>(items));
+    /**
+     * Gets the items.
+     *
+     * @return the items
+     */
+    public List<StockItem> getItems() {
+        return Collections.unmodifiableList(new ArrayList<>(this.items));
     }
 
-    public static synchronized List<StockChange> getChanges() {
-        return Collections.unmodifiableList(new ArrayList<>(changes));
+    /**
+     * Gets the changes.
+     *
+     * @return the changes
+     */
+    public List<StockChange> getChanges() {
+        return Collections.unmodifiableList(new ArrayList<>(this.changes));
     }
 
-    public static synchronized StockItem findByName(String name) {
+    /**
+     * Find by name.
+     *
+     * @param name the name
+     * @return the stock item
+     */
+    public StockItem findByName(String name) {
         if (name == null) {
             return null;
         }
-        for (StockItem it : items) {
+        for (StockItem it : this.items) {
             if (it.getName().equalsIgnoreCase(name.trim())) {
                 return it;
             }

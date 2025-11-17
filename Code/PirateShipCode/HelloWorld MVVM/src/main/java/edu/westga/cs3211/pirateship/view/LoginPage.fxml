@@ -20,6 +20,8 @@
          </font></Label>
       <Label layoutX="66.0" layoutY="141.0" text="Password" />
       <TextField fx:id="passwordTextField" layoutX="145.0" layoutY="137.0" promptText="Enter your password" />
+      <!-- Back button - on login this will close the application -->
+      <Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleBack" text="Back" />
          </children>
 
 </AnchorPane>

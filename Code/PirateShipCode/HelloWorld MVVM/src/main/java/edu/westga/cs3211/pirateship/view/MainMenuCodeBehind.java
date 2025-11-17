@@ -4,22 +4,26 @@ import edu.westga.cs3211pirateship.viewmodel.MainMenuViewModel;
 import edu.westga.cs3211.pirateship.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 
+/**
+ * The Class MainMenuCodeBehind.
+ * @author CS 3211
+ * @version Fall 2025
+ */
 public class MainMenuCodeBehind {
 	@FXML private Button addStockButton;
 
     @FXML private Button viewChangesButton;
 
+    @FXML private Button backButton;
 
-    // ViewModel is injected from outside (e.g., by the login view or a DI/Factory)
     private MainMenuViewModel viewModel;
 
+    /**
+     * Initialize.
+     */
     @FXML
     public void initialize() {
         // No binding here. The ViewModel will be provided later via setViewModel(...)
@@ -28,7 +32,11 @@ public class MainMenuCodeBehind {
         this.addStockButton.setOnAction(evt -> this.openAddStockPage());
     }
 
-    // Called by whoever loads this view; accepts a pre-configured ViewModel
+    /**
+     * Sets the view model.
+     *
+     * @param viewModel the new view model
+     */
     public void setViewModel(MainMenuViewModel viewModel) {
         this.viewModel = viewModel;
 
@@ -40,20 +48,29 @@ public class MainMenuCodeBehind {
         this.addStockButton.setOnAction(evt -> this.openAddStockPage());
     }
 
+    @FXML
+    void handleBack() {
+        NavigationManager.goBack();
+    }
+
     private void openAddStockPage() {
         if (this.viewModel == null) {
-            // proceed even if viewModel is not available; performing user may not be known
+         return;
         }
-        User user = this.viewModel == null ? null : this.viewModel.getPerformingUser();
+        User user = this.viewModel.getPerformingUser();
+        if (user == null) {
+		 return;
+		}	
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AddStock.fxml"));
-            Parent root = loader.load();
-            AddStockCodeBehind controller = loader.getController();
+            Object controllerObj = NavigationManager.navigateTo(loader);
+            AddStockCodeBehind controller = null;
+            if (controllerObj instanceof AddStockCodeBehind c) {
+                controller = c;
+            }
             if (controller != null && user != null) {
                 controller.setPerformingUser(user);
             }
-            Stage stage = (Stage) this.addStockButton.getScene().getWindow();
-            stage.setScene(new Scene(root));
         } catch (IOException exc) {
             exc.printStackTrace();
         }

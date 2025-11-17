@@ -7,9 +7,6 @@ import edu.westga.cs3211.pirateship.model.User;
 import edu.westga.cs3211.pirateship.model.UserRole;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -32,6 +29,8 @@ public class LoginPageCodeBehind {
 	private Button submitButton;
 	@FXML
 	private TextField userNameTextField;
+	@FXML
+	private Button backButton;
 
 	private LoginPageViewModel viewModel;
 
@@ -59,7 +58,7 @@ public class LoginPageCodeBehind {
 
 	void handleSubmit() {
 
-		LoginResult result = viewModel.authenticateUser();
+		LoginResult result = this.viewModel.authenticateUser();
 		this.greetingLabel.setTextFill(Color.BLACK);
 		switch (result) {
 		case SUCCESS_CREWMATE:
@@ -79,10 +78,16 @@ public class LoginPageCodeBehind {
 		}
 	}
 
+	@FXML
+	void handleBack() {
+		// On the login page, Back should exit the application
+		NavigationManager.exitApp();
+	}
+
 	private void navigateToMainMenu(UserRole role) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
-			Parent root = loader.load();
+			Object controllerObj = NavigationManager.navigateTo(loader);
 
 			// create and configure view model for the main menu and pass it to controller
 			MainMenuViewModel menuViewModel = new MainMenuViewModel();
@@ -94,13 +99,9 @@ public class LoginPageCodeBehind {
 				menuViewModel.setPerformingUser(user);
 			}
 
-			MainMenuCodeBehind controller = loader.getController();
-			if (controller != null) {
+			if (controllerObj instanceof MainMenuCodeBehind controller) {
 				controller.setViewModel(menuViewModel);
 			}
-
-			Stage stage = (Stage) this.submitButton.getScene().getWindow();
-			stage.setScene(new Scene(root));
 		} catch (IOException exc) {
 			exc.printStackTrace();
 			this.greetingLabel.setText("Failed to load main menu.");

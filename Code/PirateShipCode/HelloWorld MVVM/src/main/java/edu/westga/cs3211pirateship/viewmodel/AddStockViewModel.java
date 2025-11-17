@@ -14,6 +14,8 @@ import javafx.beans.property.StringProperty;
 
 /**
  * ViewModel for the Add Stock view.
+ * @author Markees Ewers
+ * @version Fall 2025
  */
 public class AddStockViewModel {
     private final StringProperty itemName = new SimpleStringProperty("");
@@ -25,26 +27,56 @@ public class AddStockViewModel {
     private final StringProperty errorMessage = new SimpleStringProperty("");
     private final StringProperty successMessage = new SimpleStringProperty("");
     
+    /**
+     * Item name property.
+     *
+     * @return the string property
+     */
     public StringProperty itemNameProperty() {
         return this.itemName;
     }
 
+    /**
+     * Quantity property.
+     *
+     * @return the integer property
+     */
     public IntegerProperty quantityProperty() {
         return this.quantity;
     }
 
+    /**
+     * Unit property.
+     *
+     * @return the string property
+     */
     public StringProperty unitProperty() {
         return this.unit;
     }
 
+    /**
+     * Category property.
+     *
+     * @return the simple object property
+     */
     public SimpleObjectProperty<ItemCategory> categoryProperty() {
         return this.category;
     }
 
+    /**
+     * Error message property.
+     *
+     * @return the string property
+     */
     public StringProperty errorMessageProperty() {
         return this.errorMessage;
     }
 
+    /**
+     * Success message property.
+     *
+     * @return the string property
+     */
     public StringProperty successMessageProperty() {
         return this.successMessage;
     }
@@ -53,6 +85,9 @@ public class AddStockViewModel {
      * Validate inputs and add or update stock.
      * For simplicity this method requires a performing user.
      * Returns true on success, false on error.
+     *
+     * @param performedBy the performed by
+     * @return true, if successful
      */
     public boolean addStock(User performedBy) {
         // clear previous messages
@@ -86,23 +121,24 @@ public class AddStockViewModel {
         unitVal = unitVal.trim();
 
         // Check if item already exists
-        StockItem existing = InventoryRepository.findByName(name);
+        InventoryRepository repo = InventoryRepository.getInstance();
+        StockItem existing = repo.findByName(name);
         StockItem item;
         if (existing != null) {
             // If item exists, ensure we don't create a new item with missing fields
             item = existing;
             // Create a stock change (ADD_STOCK)
             StockChange change = new StockChange(item, qty, performedBy, ChangeType.ADD_STOCK);
-            InventoryRepository.addChange(change);
+            repo.addChange(change);
             this.successMessage.set("Updated existing item: " + item.getName());
             return true;
         }
 
         // create new item and add to repository
         item = new StockItem(name, cat, qty, unitVal);
-        InventoryRepository.addItem(item);
+        repo.addItem(item);
         StockChange change = new StockChange(item, qty, performedBy, ChangeType.ADD_STOCK);
-        InventoryRepository.addChange(change);
+        repo.addChange(change);
 
         this.successMessage.set("Added new item: " + item.getName());
         return true;
